@@ -9,6 +9,12 @@ object OOBasics extends App {
 
   person.greet("Jane Doe")
   person.greet()
+
+  val person2 = new Person(100)
+  println(person2)
+
+  val person3 = new Person()
+  println(person3)
 }
 
 /**
@@ -18,10 +24,15 @@ object OOBasics extends App {
 class Person(name: String, val age: Int) {
   println("This is a constructor")
 
-  val nextAge = age + 1
+  val nextAge: Int = age + 1
 
+  def this() = this("John Doe", 30)
+
+  def this(age: Int) = this("John Doe", age)
 
   def greet(name: String) = println(s"${this.name}: Hi $name")
 
   def greet() = println(s"$name: Hi Stranger")
+
+  override def toString: String = s"$name ($age)"
 }
