@@ -1,4 +1,4 @@
-package lectures
+package lectures.basics
 
 import scala.util.Random
 
