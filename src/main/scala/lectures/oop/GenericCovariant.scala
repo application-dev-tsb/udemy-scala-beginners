@@ -8,27 +8,23 @@ object GenericCovariant extends App {
 
   //COVARIANT GENERIC TYPE
   //the easiest one, you are guaranteed the type is what you declared
-  class MyContainer[+T] {
+  class StorageMachine[+T] {
 
-    var item: Option[B >: T]
+    //var item: Option[T] = None
 
-    def set[B >: T](item: B): Unit = {
-      this.item = Some(item)
-    }
+    def store[B >: T](item: B): Unit = ???
 
-    def get(): Option[T] = {
-      this.item
-    }
+    def fetch(): Option[T] = ???
 
-    override def toString: String = s"Item = $item"
+    //override def toString: String = s"Item = $item"
   }
 
   val dog = new Dog
   val cat = new Cat
 
-  val container: MyContainer[Animal] = new MyContainer[Dog]
-  container.set(dog)
-  container.set(cat)
+  val container: StorageMachine[Animal] = new StorageMachine[Dog]
+  container.store(dog)
+  container.store(cat)
 
-  val content: Option[Animal] = container.get()
+  val content: Option[Animal] = container.fetch()
 }
