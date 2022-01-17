@@ -25,4 +25,5 @@ object TuplesAndMaps extends App {
   println(syntacticSugarMap.contains("Lyndon"))
   println(syntacticSugarMap("Lyndon"))
   println(phoneBook("does not exist")) //-1
+  println(phoneBook.filter(kv => kv._1.startsWith("J"))) //Map(Jim->123)
 }
