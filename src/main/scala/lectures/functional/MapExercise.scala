@@ -16,5 +16,10 @@ object MapExercise extends App {
    * - if there is a social connection between two people
    */
 
+  //our definition
+  type Person = String
+  type SocialNetwork = Map[Person, List[Person]]
+  var socialNetwork: SocialNetwork = Map()
 
+  def addPerson(network: SocialNetwork, person: Person): SocialNetwork = ???
 }
