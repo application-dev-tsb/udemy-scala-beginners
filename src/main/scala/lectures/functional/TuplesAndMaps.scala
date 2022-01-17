@@ -11,4 +11,18 @@ object TuplesAndMaps extends App {
   println(myBetterTuple.swap)
 
 
+  val myMap: Map[String, Int] = Map()
+
+  val phoneBook = Map(("Jim", 123), ("Daniel", 144))
+    .withDefaultValue(-1) //obvious
+
+  val syntacticSugarMap = Map(
+    "Lyndon" -> 123,
+    "Test" -> 124
+  )
+
+  //things we can do with maps
+  println(syntacticSugarMap.contains("Lyndon"))
+  println(syntacticSugarMap("Lyndon"))
+  println(phoneBook("does not exist")) //-1
 }
