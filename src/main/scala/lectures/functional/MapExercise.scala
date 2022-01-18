@@ -40,10 +40,18 @@ object MapExercise extends App {
   def remove(network: SocialNetwork, personToRemove: Person): SocialNetwork = {
     def removeFriends(friends: Set[Person], networkAcc: SocialNetwork): SocialNetwork = {
       if (friends.isEmpty) networkAcc
-      else removeFriends(friends.tail, networkAcc.map((p, f) => (p, f - personToRemove)))
+      else removeFriends(friends.tail, unfriend(networkAcc, friends.head, personToRemove))
     }
 
     removeFriends(network(personToRemove), network) - personToRemove
+  }
+
+  def mostFriends(network: SocialNetwork): Person = {
+    network.maxBy(pair => pair._2.size)._1
+  }
+
+  def nPeopleWithNoFriends(network: SocialNetwork): Int = {
+    network.filter(_._2.isEmpty).size
   }
 
   socialNetwork = addPerson(socialNetwork, "Dave")
@@ -70,4 +78,18 @@ object MapExercise extends App {
 
   println(socialNetwork)
 
+  socialNetwork = addPerson(socialNetwork, "Dave")
+  socialNetwork = addPerson(socialNetwork, "Mark")
+  socialNetwork = addPerson(socialNetwork, "Stacey")
+  socialNetwork = addPerson(socialNetwork, "Mary")
+  socialNetwork = addPerson(socialNetwork, "Loner1")
+  socialNetwork = addPerson(socialNetwork, "Loner2")
+
+  socialNetwork = friend(socialNetwork, "Dave", "Mary")
+  socialNetwork = friend(socialNetwork, "Dave", "Stacey")
+  socialNetwork = friend(socialNetwork, "Dave", "Mark")
+
+  println(mostFriends(socialNetwork))
+
+  println(nPeopleWithNoFriends(socialNetwork))
 }
