@@ -1,5 +1,7 @@
 package lectures.functional
 
+import scala.annotation.tailrec
+
 object MapExercise extends App {
 
   /**
@@ -51,7 +53,22 @@ object MapExercise extends App {
   }
 
   def nPeopleWithNoFriends(network: SocialNetwork): Int = {
-    network.filter(_._2.isEmpty).size
+    network.count(_._2.isEmpty)
+    //network.filter(_._2.isEmpty).size
+  }
+
+  //if a and b are connected
+  def socialConnection(network: SocialNetwork, a: Person, b: Person): Boolean = {
+
+    @tailrec
+    def bfs(target: Person, consideredPeople: Set[Person], discoveredPeople: Set[Person]): Boolean = {
+      if (discoveredPeople.isEmpty) false
+      else if (target == discoveredPeople.head) true
+      else if (consideredPeople.contains(discoveredPeople.head)) bfs(target, consideredPeople, discoveredPeople.tail)
+      else bfs(target, consideredPeople + discoveredPeople.head, discoveredPeople.tail ++ network(discoveredPeople.head))
+    }
+
+    bfs(b, Set(), network(a) + a)
   }
 
   socialNetwork = addPerson(socialNetwork, "Dave")
@@ -92,4 +109,7 @@ object MapExercise extends App {
   println(mostFriends(socialNetwork))
 
   println(nPeopleWithNoFriends(socialNetwork))
+
+  println(socialConnection(socialNetwork, "Dave", "Mary"))
+  println(socialConnection(socialNetwork, "Loner1", "Mary"))
 }
