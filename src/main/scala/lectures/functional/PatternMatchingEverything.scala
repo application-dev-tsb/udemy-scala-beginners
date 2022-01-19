@@ -15,4 +15,16 @@ object PatternMatchingEverything extends App {
   println(constants(42))
   println(constants("Scala"))
   println(constants(this))
+
+  //TUPLES
+  val myTuple = (0, 1, "Math")
+
+  def tupleMatcher(anything: Any): String = anything match {
+    case (a: Int, b: Int, str: String) => s"Awesome tuple: ($a,$b,$str)"
+    case any: Any => s"Fallback: $any"
+  }
+
+  println(tupleMatcher(this))
+  println(tupleMatcher((1, 2, "Hello")))
+  println(tupleMatcher((1, 2.5, "Hello")))
 }
