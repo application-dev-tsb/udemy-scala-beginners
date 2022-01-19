@@ -50,4 +50,15 @@ object PatternMatchingEverything extends App {
   println(listChecker(List(42)))
   println(listChecker(List(42, 1, 2, 3)))
   println(listChecker(List(1)))
+
+  //MULTI-PATTERN
+  def listEmptinessMatcher(someList: List[Int]): Boolean = someList match {
+    case List() | List(0) | List(0, 0) => true
+    case _ => false
+  }
+
+  println(listEmptinessMatcher(List()))
+  println(listEmptinessMatcher(List(0)))
+  println(listEmptinessMatcher(List(1)))
+
 }
