@@ -78,4 +78,8 @@ object PatternMatchingEverything extends App {
 
   println(startsWith42(List(1, 2, 3)))
   println(startsWith42(List(42, 2, 3)))
+
+  //SOME WEIRD SHIT
+  val a :: b = List(1, 2, 3, 4)
+  println(s"a=$a, b=$b")
 }
