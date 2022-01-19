@@ -70,4 +70,12 @@ object PatternMatchingEverything extends App {
   println(listEmptinessMatcherWithNameBinding(List()))
   println(listEmptinessMatcherWithNameBinding(List(1)))
 
+  //IF GUARDS
+  def startsWith42(theList: List[Int]): Boolean = theList match {
+    case List(theFirstNumber, _*) if theFirstNumber == 42 => true
+    case _ => false
+  }
+
+  println(startsWith42(List(1, 2, 3)))
+  println(startsWith42(List(42, 2, 3)))
 }
