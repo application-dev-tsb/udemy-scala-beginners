@@ -80,6 +80,15 @@ object PatternMatchingEverything extends App {
   println(startsWith42(List(42, 2, 3)))
 
   //SOME WEIRD SHIT
-  val a :: b = List(1, 2, 3, 4)
+  val a :: b = List(1, 2, 3, 4, 1, 42)
   println(s"a=$a, b=$b")
+
+  //PARTIAL FUNCTION
+  val mappedList = b.map {
+    case v if v % 2 == 0 => s"$v is even"
+    case 1 => "the ONE"
+    case v => s"$v is odd"
+  }
+
+  println(mappedList)
 }
