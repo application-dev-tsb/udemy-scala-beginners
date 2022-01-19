@@ -61,4 +61,13 @@ object PatternMatchingEverything extends App {
   println(listEmptinessMatcher(List(0)))
   println(listEmptinessMatcher(List(1)))
 
+  //NAME BINDING
+  def listEmptinessMatcherWithNameBinding(someList: List[Int]): String = someList match {
+    case a @ (List() | List(0) | List(0, 0)) => s"The list is empty: $a"
+    case a @ _ => s"This is the list: $a"
+  }
+
+  println(listEmptinessMatcherWithNameBinding(List()))
+  println(listEmptinessMatcherWithNameBinding(List(1)))
+
 }
