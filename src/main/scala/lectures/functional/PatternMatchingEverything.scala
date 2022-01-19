@@ -27,4 +27,27 @@ object PatternMatchingEverything extends App {
   println(tupleMatcher(this))
   println(tupleMatcher((1, 2, "Hello")))
   println(tupleMatcher((1, 2.5, "Hello")))
+
+  //IT CAN ALSO BE NESTED
+  val coolNestedTuple = (1, 2, ("Scala", "Awesome"))
+
+  def nestedMatcher(any: Any): String = any match {
+    case (a: Int, b: Int) => "Not Cool"
+    case (a: Int, b: Int, (_: String, c: String)) => s"Cool: $a, $b, $c"
+    case _ => "Also not cool"
+  }
+
+  println(nestedMatcher(coolNestedTuple))
+  println(nestedMatcher(this))
+
+  //LISTS CAN ALSO BE PATTERN MATCHED
+  def listChecker(someList: List[Any]): String = someList match {
+    case List(42, _, _, _) => "Starts with awesomeness and has 4 items"
+    case List(42, _*) => "Starts with awesomeness and has any items"
+    case _ => "Dont know this"
+  }
+
+  println(listChecker(List(42)))
+  println(listChecker(List(42, 1, 2, 3)))
+  println(listChecker(List(1)))
 }
